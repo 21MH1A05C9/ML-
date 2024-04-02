@@ -21,4 +21,4 @@ fig.savefig("imagename.png")
 
 OutPut:
 =========
- output image file name is : ex-3 output 
+ output image file name is : ex-3 output.jpeg
