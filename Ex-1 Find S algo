@@ -1,0 +1,49 @@
+import pandas as pd
+import numpy as np
+df=pd.read_csv("stuper.csv")
+print(df)
+features=np.array(df)[:,:-1]
+print("\n features are :\n",features)
+target=np.array(df)[:,-1]
+print("\n target is :\n",target)
+specific_hyp=None
+for i,val in enumerate(target):
+    if val=="Yes":
+        specific_hyp=features[i].copy()
+        break
+for i,val in enumerate(features):
+    if target[i]=="Yes":
+        for x in range(len(features)):
+            if val[x]!=specific_hyp[x]:
+                specific_hyp[x]='?'
+            else:
+                pass
+print("\n general hypothesis is :\n",specific_hyp)
+
+stuper.csv file:
+===============
+ CGPA Interactiveness Practical Knowledge Communication Skills  \
+0  >=9             Yes           Excellent                Good    
+1  >=9             Yes                Good                Good    
+2  >=8              No                Good                Good    
+3  >=9             Yes                Good                Good    
+
+  Logical Thinking Interest Job Offer  
+0             Fast      Yes       Yes  
+1             Fast      Yes       Yes  
+2             Fast       No        No  
+3             Slow       No       Yes  
+
+Output:
+========
+features are :
+ [['>=9' 'Yes' 'Excellent' 'Good ' 'Fast' 'Yes']
+ ['>=9' 'Yes' 'Good' 'Good ' 'Fast' 'Yes']
+ ['>=8' 'No' 'Good' 'Good ' 'Fast' 'No']
+ ['>=9' 'Yes' 'Good' 'Good ' 'Slow' 'No']]
+
+ target is :
+ ['Yes' 'Yes' 'No' 'Yes']
+
+ general hypothesis is :
+ ['>=9' 'Yes' '?' 'Good ' 'Fast' 'Yes'] 
