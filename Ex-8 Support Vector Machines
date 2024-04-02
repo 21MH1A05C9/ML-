@@ -1,0 +1,28 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_digits
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
+digits=load_digits()
+df=pd.DataFrame(digits['data'],columns=digits['feature_names'])
+
+scaler = StandardScaler()
+scaler.fit(df)
+scaled_data = scaler.transform(df)
+
+pca = PCA(n_components=2)
+pca.fit(scaled_data)
+x_pca = pca.transform(scaled_data)
+y=x_pca[:,:2]
+
+svm = SVC(kernel='linear')
+svm.fit(x_pca, digits.target)
+
+plt.scatter(x_pca[:, 0], x_pca[:, 1], c= digits.target, s=20)
+
+output:
+=========
+output image file name is : ex-8 output
