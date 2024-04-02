@@ -1,0 +1,67 @@
+pip install mlxtend
+----------------------
+ Bias and Variance code:
+=====================================
+from mlxtend.evaluate import bias_variance_decomp
+from sklearn.tree import DecisionTreeClassifier
+from mlxtend.data import iris_data
+from sklearn.model_selection import train_test_split
+x,y=iris_data()
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.5,shuffle=True)
+tree=DecisionTreeClassifier()
+avg_expected_loss,avg_bias,avg_var=bias_variance_decomp(tree,x_train,y_train,x_test,y_test,num_rounds=500)
+print(f'Average Expected Loss :{round(avg_expected_loss, 3)}')
+print(f'Average Bias: {round(avg_bias, 3)}')
+print(f'Average Variance: {round(avg_var, 3)}')
+
+//Bias and Variance output:
+=========
+Average Expected Loss :0.076
+Average Bias: 0.04
+Average Variance: 0.058
+
+Remove duplicates code:
+===============================
+import pandas as pd
+data={"A":['Team A','Team B','Team A','Team C','Team D'],
+      "B":[50,60,50,20,10],
+      "C":[True,False,True,False,False]
+     }
+df=pd.DataFrame(data)
+print(df)
+display(df.drop_duplicates())
+
+// Remove duplicates output:
+=============================
+        A   B      C
+0  Team A  50   True
+1  Team B  60  False
+2  Team A  50   True
+3  Team C  20  False
+4  Team D  10  False
+       A	 B  	C
+0	Team A	50	True
+1	Team B	60	False
+3	Team C	20	False
+4	Team D	10	False
+
+Cross Validation Code:
+===========================
+from sklearn import datasets
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import KFold,cross_val_score
+x,y=datasets.load_iris(return_X_y=True)
+clf=DecisionTreeClassifier(random_state=0)
+k_folds=KFold(n_splits=5)
+scores=cross_val_score(clf,x,y,cv=k_folds)
+print("cross Validation scores are : ",scores)
+print(f"Average CV score is :",scores.mean())
+print("No.of CV scores used in Average :",len(scores))
+
+//Cross Validation output:
+==========================
+cross Validation scores are :  [1  0.96666667  0.83333333  0.93333333  0.8]
+Average CV score is : 0.9066666666666666
+No.of CV scores used in Average : 5
+
+
