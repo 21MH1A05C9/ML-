@@ -1,0 +1,19 @@
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_iris
+d=load_iris()
+x_train,x_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2)
+knn=KNeighborsClassifier(n_neighbors=7)
+knn.fit(x_train,y_train)
+y_pred=knn.predict(x_test)
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+print(confusion_matrix(y_test,y_pred))
+print("Accuracy is : ",accuracy_score(y_test,y_pred))
+
+output:
+==========
+[[ 7  0  0]
+ [ 0 12  0]
+ [ 0  0 11]]
+Accuracy is :  1.0
