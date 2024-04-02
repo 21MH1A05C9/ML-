@@ -1,0 +1,18 @@
+from numpy import asarray
+from sklearn.preprocessing import OneHotEncoder
+data=asarray([['nanda'],['hari'],['sutrayeth']])
+print(data)
+print()
+encode=OneHotEncoder(sparse_output=False)
+onehot=encode.fit_transform(data)
+print(onehot)
+
+output:
+==========
+[['nanda']
+ ['hari']
+ ['sutrayeth']]
+
+[[0. 1. 0.]
+ [1. 0. 0.]
+ [0. 0. 1.]]
