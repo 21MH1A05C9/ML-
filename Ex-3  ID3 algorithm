@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+import pandas as pd
+import numpy as np
+from sklearn import tree
+d=load_iris()
+df=pd.DataFrame(d.data,columns=d.feature_names)
+df['target']=d.target
+X_train,X_test,Y_train,Y_test=train_test_split(df[d.feature_names],df['target'])
+clf=DecisionTreeClassifier(criterion="entropy",max_depth=2)
+clf.fit(X_train,Y_train)
+clf.predict(X_test)
+tree.plot_tree(clf);
+#fn=['sepal lenght(cm)','sepal width(cm)','petal length(cm)','petal width(cm)']
+#cn=['setosa','versicolor','virginica']
+#fig,axes=plt.subplots(nrows=1,ncols=1,figsize=(10,10),dpi=300)
+#tree.plot_tree(clf,feature_names=fn,class_names=cn,filled=True);
+fig.savefig("imagename.png")
+
+OutPut:
+=========
+ output image file name is : ex-3 output 
